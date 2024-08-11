@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Add Campaign</h1>
+    <form method="post">
+        <label for="name">Campaign Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="description">Campaign Description:</label>
+        <textarea id="description" name="description" required></textarea>
+        <br>
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+        <br>
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required>
+        <br>
+        <button type="submit">Add Campaign</button>
+    </form>
+{% endblock %}

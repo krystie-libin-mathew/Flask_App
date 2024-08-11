@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <p>Welcome, {{ user.name }}!</p>
+    {% if user.role == 'company' %}
+        <h2>Company Dashboard</h2>
+        <ul>
+            <li><a href="{{ url_for('add_campaign') }}">Add Campaign</a></li>
+            <li><a href="{{ url_for('manage_campaigns') }}">Manage Campaigns</a></li>
+        </ul>
+    {% elif user.role == 'influencer' %}
+        <h2>Influencer Dashboard</h2>
+        <ul>
+            <li><a href="{{ url_for('profile_settings') }}">Profile Settings</a></li>
+            <li><a href="{{ url_for('reports_analytics') }}">Reports & Analytics</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}

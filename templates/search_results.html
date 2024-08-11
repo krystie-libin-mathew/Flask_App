@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    <ul>
+    {% for influencer in influencers %}
+        <li>
+            <h2>{{ influencer.name }}</h2>
+            <p>Specialty: {{ influencer.specialty }}</p>
+            <p><a href="{{ url_for('view_influencer_profile', influencer_id=influencer.id) }}">View Profile</a></p>
+        </li>
+    {% endfor %}
+    </ul>
+    <ul>
+    {% for company in companies %}
+        <li>
+            <h2>{{ company.name }}</h2>
+            <p>Description: {{ company.description }}</p>
+            <p><a href="{{ url_for('view_company_profile', company_id=company.id) }}">View Profile</a></p>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Influencer Profile</h1>
+    <h2>{{ influencer.name }}</h2>
+    <p>Email: {{ influencer.email }}</p>
+    <p>Profile Picture: {{ influencer.profile_pic }}</p>
+    <p>Specialty: {{ influencer.specialty }}</p>
+    <p>Reach: {{ influencer.reach }}</p>
+    <p>Platform: {{ influencer.platform }}</p>
+    <p>Bank Account: {{ influencer.bank_acc }}</p>
+    <p>Flagged: {{ influencer.flagged }}</p>
+{% endblock %}

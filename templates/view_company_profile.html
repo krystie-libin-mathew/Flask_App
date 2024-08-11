@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Company Profile</h1>
+    <h2>{{ company.name }}</h2>
+    <p>Description: {{ company.description }}</p>
+    <p>Email: {{ company.email }}</p>
+    <p>Profile Picture: {{ company.profile_pic }}</p>
+{% endblock %}

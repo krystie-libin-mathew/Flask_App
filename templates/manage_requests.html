@@ -1,0 +1,30 @@
+
+{% extends "dashboard.html" %}
+
+{% block dashboard_content %}
+    <h2>Manage Requests</h2>
+    <h3>Pending Requests</h3>
+    <ul>
+        {% for request in pending_requests %}
+        <li>
+            {{ request.details }}
+            <button>Approve</button>
+            <button>Reject</button>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Approved Requests</h3>
+    <ul>
+        {% for request in approved_requests %}
+        <li>{{ request.details }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Rejected Requests</h3>
+    <ul>
+        {% for request in rejected_requests %}
+        <li>{{ request.details }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

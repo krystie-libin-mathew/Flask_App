@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Campaign Request Details</h1>
+    <h2>{{ request.campaign.name }}</h2>
+    <p>Message: {{ request.messages }}</p>
+    <p>Status: {{ request.status }}</p>
+    <p>Pre-requisite: {{ request.pre_requisite }}</p>
+    <p>Payment Amount: {{ request.payment_amt }}</p>
+{% endblock %}

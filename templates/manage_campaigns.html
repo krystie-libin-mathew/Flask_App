@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Manage Campaigns</h1>
+    <ul>
+    {% for campaign in campaigns %}
+        <li>
+            <h2>{{ campaign.name }}</h2>
+            <p>Description: {{ campaign.description }}</p>
+            <p>Start Date: {{ campaign.start_date }}</p>
+            <p>End Date: {{ campaign.end_date }}</p>
+            <p><a href="{{ url_for('view_campaign_details', campaign_id=campaign.id) }}">View Details</a></p>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
