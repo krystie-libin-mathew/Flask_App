@@ -3,6 +3,7 @@ from app import app, db
 from sqlalchemy.exc import IntegrityError
 from models import User, Influencer, Campaign, CampaignRequest, AdRequest, Bookmark, Rating
 from werkzeug.security import generate_password_hash, check_password_hash
+from forms import SignUpForm
 
 app.secret_key = '123456'  
 
@@ -28,33 +29,35 @@ def login():
 
 @app.route('/sign_in', methods=['GET', 'POST'])
 def sign_in():
+    form = SignUpForm()
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
-        role = request.form['role']
-        
-        existing_user = User.query.filter_by(email=email).first()
-        if existing_user:
-            flash('Email already exists. Please choose a different email.')
-            return render_template('sign_in.html', title='Sign In')
-        
-        # Correct hashing method
-        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
-        
-        new_user = User(name=name, email=email, password=hashed_password, role=role)
-        
-        try:
-            db.session.add(new_user)
-            db.session.commit()
-            flash('Sign Up successful! Please log in.')
-            return redirect(url_for('login'))
-        except IntegrityError:
-            db.session.rollback()
-            flash('An error occurred. Please try again.')
-            return render_template('sign_in.html', title='Sign In')
+        if form.validate_on_submit():
+            name = request.form['name']
+            email = request.form['email']
+            password = request.form['password']
+            role = request.form['role']
+            
+            existing_user = User.query.filter_by(email=email).first()
+            if existing_user:
+                flash('Email already exists. Please choose a different email.')
+                return render_template('sign_in.html', title='Sign In', form=form)
+            
+            # Correct hashing method
+            hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+            
+            new_user = User(name=name, email=email, password=hashed_password, role=role)
+            
+            try:
+                db.session.add(new_user)
+                db.session.commit()
+                flash('Sign Up successful! Please log in.')
+                return redirect(url_for('login'))
+            except IntegrityError:
+                db.session.rollback()
+                flash('An error occurred. Please try again.')
+                return render_template('sign_in.html', title='Sign In', form=form)
     
-    return render_template('sign_in.html', title='Sign In')
+    return render_template('sign_in.html', title='Sign In', form=form)
 
 @app.route('/dashboard')
 def dashboard():

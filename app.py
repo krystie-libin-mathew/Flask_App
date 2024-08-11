@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from forms import MyForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'you-will-never-guess'
